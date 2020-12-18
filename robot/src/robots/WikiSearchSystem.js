@@ -38,7 +38,7 @@ const init = () => new Promise (async (res,rej) => {
             })
         );
 
-        keywordInSentence(file.setencesAndInfo);
+        await keywordInSentence(file.setencesAndInfo);
         console.log('Pesquisa concluida com sucesso');
 
         fs.save(file);

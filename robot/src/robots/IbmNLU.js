@@ -10,7 +10,7 @@ const nlu = new NaturalLanguageUnderstandingV1({
 })
 
 const init = (text) => new Promise ((res,rej) => {
-  console.log('teste...')
+  console.log('\nWatson search keywords in setence...')
     nlu.analyze(
         {
           text, // Buffer or String

@@ -1,13 +1,22 @@
 const InputSystem = require('./src/robots/inputSystem').InputSystem
 const WikiSearchSystem = require('./src/robots/WikiSearchSystem').WikiSearchSystem
-const colors = require('colors')
+const SearchAndDownloadImages = require('./src/robots/SearchImageAndDownloadSystem').SearchAndDownloadImages
+
+
 const fs = require('./src/robots/fileSystem')
+const NodeJsFileSystem = require('fs');
+const colors = require('colors')
+const path = require('path')
 
 async function init () {
-   fs.remove()
+    if(NodeJsFileSystem.existsSync(path.resolve('temp','temp.json'))){
+        fs.remove();
+        console.log('Apagando cahce....'.red)
+    }
+
     await InputSystem();
     await WikiSearchSystem();
-
+    await SearchAndDownloadImages();
 }
 
 init()
