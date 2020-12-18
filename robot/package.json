@@ -8,6 +8,7 @@
     "colors": "^1.4.0",
     "googleapis": "^66.0.0",
     "ibm-watson": "^6.0.0",
+    "image-downloader": "^4.0.2",
     "sbd": "^1.0.18"
   }
 }

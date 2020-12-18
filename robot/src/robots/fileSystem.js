@@ -17,7 +17,10 @@ module.exports = {
         log(`saving in ${tempFile}`.underline.green)
         return fs.writeFileSync(tempFile,json);
     },
-    remove: () =>fs.unlinkSync(tempFile),
+    remove: () =>{
+        fs.unlinkSync(tempFile)
+        fs.unlinkSync(`${tempPath}/images`)
+    },
     load: () => {
         if(fs.existsSync(tempFile)){
             const json = JSON.parse(fs.readFileSync(tempFile));
