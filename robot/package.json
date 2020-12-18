@@ -1,0 +1,12 @@
+{
+  "name": "robot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "algorithmia": "^0.3.10",
+    "colors": "^1.4.0",
+    "ibm-watson": "^6.0.0",
+    "sbd": "^1.0.18"
+  }
+}
