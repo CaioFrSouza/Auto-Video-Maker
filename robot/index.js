@@ -18,7 +18,7 @@ async function init () {
     await InputSystem();
     await WikiSearchSystem();
     await SearchAndDownloadImages();
-    // TextToSpeechSystem()
+    await TextToSpeechSystem();
 }
 
 init()
