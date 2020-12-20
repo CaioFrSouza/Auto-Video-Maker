@@ -1,3 +1,4 @@
+const { dir } = require('console');
 const fs = require('fs');
 const path = require('path');
 const { log } = require('../helpers');
@@ -18,8 +19,15 @@ module.exports = {
         return fs.writeFileSync(tempFile,json);
     },
     remove: () =>{
-        fs.unlinkSync(tempFile)
-        fs.unlinkSync(`${tempPath}/images`)
+        fs.rmSync(tempPath,{recursive :true})
+        fs.mkdirSync(tempPath)
+
+    },
+    IfCreate: (dir) => {
+        if(!fs.existsSync(path.resolve(dir))){
+            return fs.mkdirSync(path.resolve(dir))
+        }
+        return
     },
     load: () => {
         if(fs.existsSync(tempFile)){

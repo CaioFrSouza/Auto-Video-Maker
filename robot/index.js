@@ -1,6 +1,7 @@
 const InputSystem = require('./src/robots/inputSystem').InputSystem
 const WikiSearchSystem = require('./src/robots/WikiSearchSystem').WikiSearchSystem
 const SearchAndDownloadImages = require('./src/robots/SearchImageAndDownloadSystem').SearchAndDownloadImages
+const TextToSpeechSystem = require('./src/robots/TextToSpeechSystem')
 
 
 const fs = require('./src/robots/fileSystem')
@@ -17,6 +18,7 @@ async function init () {
     await InputSystem();
     await WikiSearchSystem();
     await SearchAndDownloadImages();
+    // TextToSpeechSystem()
 }
 
 init()

@@ -10,10 +10,12 @@ const googleConfig = require('../config/config.json').google
 async function init () {
     const file = await fs.load();
 
-    for(const obj of file.setencesAndInfo){
-        const links = await SearchImage(obj.keywords[0]);
+    for(const [i,obj] of file.setencesAndInfo.entries()){
+        const links = await SearchImage(`${file.searchTearm.articleName} ${obj.keywords[0]}`);
         obj.images = links
-        DownloadImage(links[0])
+        await DownloadImage(links[0],i).catch(reason => {
+            DownloadImage(links[1],i)
+        })
         
     }
     fs.save(file)
@@ -25,13 +27,13 @@ async function SearchImage (q) {
     console.log('Search images in google');
     const response = await googleCustomSearch.cse.list({
         ...googleConfig,
-        q, 
+        q
     })
     const imgUrl = response.data.items.map(item => item.link )
     return imgUrl
 }
 
-async function DownloadImage (url) {
+async function DownloadImage (url,i) {
     const dest = path.resolve('temp','images');
 
     try{
@@ -41,7 +43,7 @@ async function DownloadImage (url) {
         }
         await ImageDownloader.image({
             url,
-            dest
+            dest: path.resolve(dest,`original-${i}.png`),
         })
 
     }
