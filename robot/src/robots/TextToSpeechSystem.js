@@ -47,7 +47,12 @@ function SetencesToAudio () {
         const stences = data.setencesAndInfo;
         stences.forEach(async (element,i) => {
             await synthesizeSpeech(element.text,i)
+            .catch((err) => {
+                console.log(err)
+                rej(err)
+            })
         })
+        res()
     })
 }
 

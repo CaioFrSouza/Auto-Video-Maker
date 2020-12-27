@@ -11,7 +11,11 @@ async function init () {
     const file = await fs.load();
 
     for(const [i,obj] of file.setencesAndInfo.entries()){
-        const links = await SearchImage(`${file.searchTearm.articleName} ${obj.keywords[0]}`);
+        
+        let keywords = obj.keywords.map(text => `${text} `)
+        keywords = keywords.slice(0,2)
+        const links = await SearchImage(`${file.searchTearm.articleName} ${keywords}`);
+
         obj.images = links
         await DownloadImage(links[0],i).catch(reason => {
             DownloadImage(links[1],i)
@@ -25,10 +29,8 @@ async function init () {
 
 async function SearchImage (q) {
     console.log('Search images in google');
-    const response = await googleCustomSearch.cse.list({
-        ...googleConfig,
-        q
-    })
+    const response = await googleCustomSearch.cse.list({...googleConfig,q,})
+
     const imgUrl = response.data.items.map(item => item.link )
     return imgUrl
 }

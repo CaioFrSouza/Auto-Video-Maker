@@ -4,6 +4,13 @@
   "main": "robot/index.js",
   "license": "MIT",
 
+  "scripts": {
+    "start":"node robot/index.js"
+  },
+
   "private":true,
-  "workspaces":["robot/*"]
+  "workspaces":[
+    "robot/*",
+    "Converter/*"
+  ]
 }
