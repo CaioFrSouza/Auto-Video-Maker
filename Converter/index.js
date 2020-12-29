@@ -1,5 +1,5 @@
 const nodeFileSystem = require('fs') 
-const fs = require('../robot/src/robots/fileSystem')
+const fs = require('../robot/robots/fileSystem')
 const path = require('path');
 const imageMaskPath = path.resolve('Converter','ImageMask','ImageMagick-7.0.10-Q8','magick.exe')
 const { spawn } = require('child_process');
@@ -110,8 +110,7 @@ function setencesToImage(text,i=0) {
             '-kerning','-1',`caption:${text}`,`${outPutFile}`]);
 
             process.stderr.on('data',err => console.log(err.toString()));
-            res();
-
+            process.stderr.on('close', () => res())
     })
 }
 
